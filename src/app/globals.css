@@ -56,6 +56,10 @@ html:not([data-theme="dark"]) .brand-mark {
   mix-blend-mode: multiply;
 }
 
+.figure-well svg :is(path, line, circle, polyline, polygon) {
+  stroke: color-mix(in srgb, var(--foreground) 72%, transparent);
+}
+
 .lesson-card {
   background: var(--surface);
 }
@@ -116,9 +120,320 @@ html:not([data-theme="dark"]) .theme-toggle-to-dark {
   animation-play-state: paused;
 }
 
+@keyframes feat-line {
+  0%,
+  12% {
+    stroke-dashoffset: 1;
+  }
+  46%,
+  78% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes feat-in {
+  0%,
+  14% {
+    opacity: 0;
+  }
+  30%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes feat-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes feat-select {
+  0%,
+  12% {
+    transform: translateY(0);
+  }
+  18%,
+  30% {
+    transform: translateY(2.5rem);
+  }
+  36%,
+  48% {
+    transform: translateY(5rem);
+  }
+  54%,
+  66% {
+    transform: translateY(7.5rem);
+  }
+  72%,
+  84% {
+    transform: translateY(10rem);
+  }
+  92%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes feat-drop {
+  0%,
+  18% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  36%,
+  78% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes feat-draw {
+  0%,
+  16% {
+    stroke-dashoffset: 1;
+  }
+  48%,
+  78% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes feat-travel {
+  0%,
+  12% {
+    offset-distance: 6%;
+  }
+  78%,
+  100% {
+    offset-distance: 78%;
+  }
+}
+
+@keyframes feat-flow {
+  to {
+    stroke-dashoffset: -72;
+  }
+}
+
+.feat-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: feat-line 6.4s ease-in-out infinite;
+}
+
+.feat-flow {
+  stroke-dasharray: 4 18;
+  animation: feat-flow 2.8s linear infinite;
+}
+
+@keyframes feat-resource {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feat-resource {
+  animation: feat-resource 0.55s ease-out both;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.feat-resource-line {
+  stroke-dasharray: 4 22;
+  animation: feat-flow 2.4s linear infinite;
+}
+
+.feat-node {
+  opacity: 0;
+  animation: feat-in 6.4s ease-in-out infinite;
+}
+
+.feat-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: feat-pulse 2.2s ease-in-out infinite;
+}
+
+.feat-select {
+  animation: feat-select 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.feat-drop {
+  animation: feat-drop 5.6s ease-in-out infinite;
+}
+
+.feat-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: feat-draw 5.2s ease-in-out infinite;
+}
+
+.feat-sheet {
+  opacity: 0;
+  animation: feat-in 5.8s ease-in-out infinite;
+}
+
+.feat-marker {
+  offset-path: path("M 36 118 H 284");
+  offset-rotate: 0deg;
+  animation: feat-travel 6.5s ease-in-out infinite;
+}
+
+@keyframes about-lift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.about-lift {
+  animation: about-lift 5.8s ease-in-out infinite;
+}
+
+@keyframes about-node-0 {
+  0%,
+  8% {
+    opacity: 0;
+  }
+  16%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes about-node-1 {
+  0%,
+  18% {
+    opacity: 0;
+  }
+  28%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes about-node-2 {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  40%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes about-node-3 {
+  0%,
+  42% {
+    opacity: 0;
+  }
+  52%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.about-node {
+  opacity: 0;
+}
+
+.about-node-0 {
+  animation: about-node-0 6.4s ease-in-out infinite;
+}
+
+.about-node-1 {
+  animation: about-node-1 6.4s ease-in-out infinite;
+}
+
+.about-node-2 {
+  animation: about-node-2 6.4s ease-in-out infinite;
+}
+
+.about-node-3 {
+  animation: about-node-3 6.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .feat-line,
+  .feat-flow,
+  .feat-resource,
+  .feat-resource-line,
+  .feat-node,
+  .feat-pulse,
+  .feat-select,
+  .feat-drop,
+  .feat-draw,
+  .feat-sheet,
+  .feat-marker,
+  .about-lift,
+  .about-node-0,
+  .about-node-1,
+  .about-node-2,
+  .about-node-3 {
     animation: none;
+  }
+
+  .feat-line,
+  .feat-draw {
+    stroke-dashoffset: 0;
+  }
+
+  .feat-node,
+  .feat-sheet,
+  .feat-drop,
+  .feat-resource,
+  .about-lift,
+  .about-node {
+    opacity: 1;
+    transform: none;
+  }
+
+  .feat-select {
+    transform: translateY(5rem);
+  }
+
+  .feat-marker {
+    offset-distance: 48%;
   }
 
   html {

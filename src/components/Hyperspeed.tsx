@@ -859,19 +859,17 @@ const Hyperspeed = ({
     const milestoneForward = new THREE.Vector3();
     const milestoneLayer = document.createElement('div');
     milestoneLayer.className = 'hyperspeed-milestones';
-    container.appendChild(milestoneLayer);
+    (container.parentElement ?? container).appendChild(milestoneLayer);
     const milestoneNodes: { root: HTMLDivElement; name: HTMLSpanElement }[] = [];
     const syncMilestones = (names: string[]) => {
       while (milestoneNodes.length < names.length) {
         const root = document.createElement('div');
         root.className = 'hyperspeed-milestone';
         const name = document.createElement('span');
-        name.className = 'hyperspeed-milestone-name';
-        const stem = document.createElement('span');
-        stem.className = 'hyperspeed-milestone-stem';
-        const dot = document.createElement('span');
-        dot.className = 'hyperspeed-milestone-dot';
-        root.append(name, stem, dot);
+        name.className = 'hyperspeed-milestone-flag';
+        const stake = document.createElement('span');
+        stake.className = 'hyperspeed-milestone-stake';
+        root.append(name, stake);
         milestoneLayer.appendChild(root);
         milestoneNodes.push({ root, name });
       }
@@ -1051,50 +1049,42 @@ const Hyperspeed = ({
         const width = renderer.domElement.clientWidth;
         const height = renderer.domElement.clientHeight;
         camera.getWorldDirection(milestoneForward);
-        const spacing = TRAVEL / names.length;
+        const span = Math.min(TRAVEL, 136);
+        const spacing = span / names.length;
         const travel = shared.uTime.value * 120;
-        const placed: { node: (typeof milestoneNodes)[number]; dist: number; opacity: number; x: number; y: number }[] = [];
         names.forEach((_, index) => {
           const node = milestoneNodes[index];
-          const z = -TRAVEL + ((travel + index * spacing) % TRAVEL);
+          const side = index % 2 === 0 ? 1 : -1;
+          const z = -span + ((travel + index * spacing) % span);
           const shapes = curveShapes(Math.abs(z / TRAVEL), shared.uTime.value);
           let bendX = 0;
           let bendY = 0;
+          let bendZ = 0;
           shapes.forEach((shape, shapeIndex) => {
-            bendX += shape[0] * state.weights[shapeIndex];
-            bendY += shape[1] * state.weights[shapeIndex];
+            const weight = state.weights[shapeIndex] * s.curvature;
+            bendX += shape[0] * weight;
+            bendY += shape[1] * weight;
+            bendZ += shape[2] * weight;
           });
-          bendX *= s.curvature;
-          bendY *= s.curvature;
-          const edge = s.roadWidth + s.medianWidth / 2 + 1.6;
-          milestonePoint.set(edge + bendX, bendY + 1.4, z);
+          const edge = side * (s.roadWidth + s.medianWidth / 2);
+          milestonePoint.set(edge + bendX, bendY, z + bendZ);
           milestoneOffset.copy(milestonePoint).sub(camera.position);
           const ahead = milestoneOffset.dot(milestoneForward);
-          const dist = milestoneOffset.length();
           milestonePoint.project(camera);
           const x = (milestonePoint.x * 0.5 + 0.5) * width;
           const y = (-milestonePoint.y * 0.5 + 0.5) * height;
-          const onRoad =
-            ahead > 24 &&
-            milestonePoint.z > -1 &&
-            milestonePoint.z < 1 &&
-            y > height * 0.14 &&
-            y < height * 0.72 &&
-            (y < height * 0.42 || x > width * 0.56);
-          const near = Math.min(1, Math.max(0, (dist - 48) / 24));
-          const far = Math.min(1, Math.max(0, (210 - dist) / 55));
-          const opacity = onRoad ? near * far : 0;
-          node.root.style.opacity = '0';
-          if (opacity < 0.08) return;
-          placed.push({ node, dist, opacity, x, y });
+          const aheadOk = ahead > 2 && milestonePoint.z > -1 && milestonePoint.z < 1;
+          const onScreen = x > -140 && x < width + 140 && y > -80 && y < height + 40;
+          const far = Math.min(1, Math.max(0, (span + 24 - ahead) / 36));
+          const exit = Math.min(1, Math.max(0, (height * 0.97 - y) / 34));
+          const opacity = aheadOk && onScreen ? far * exit : 0;
+          const scale = Math.min(1.75, Math.max(0.46, (24 / Math.max(ahead, 1)) ** 0.72));
+          const right = side > 0;
+          node.root.dataset.side = right ? 'right' : 'left';
+          node.root.style.opacity = opacity < 0.04 ? '0' : opacity.toFixed(3);
+          node.root.style.zIndex = String(400 - Math.round(ahead));
+          node.root.style.transform = `translate3d(${x}px, ${y}px, 0) translate(${right ? '0px' : '-100%'}, -100%) scale(${scale.toFixed(3)})`;
         });
-        placed
-          .sort((a, b) => a.dist - b.dist)
-          .slice(0, 3)
-          .forEach((item) => {
-            item.node.root.style.opacity = String(item.opacity);
-            item.node.root.style.transform = `translate(${item.x}px, ${item.y}px) translate(0, -100%)`;
-          });
       }
 
       if (state.visible) raf = requestAnimationFrame(frame);

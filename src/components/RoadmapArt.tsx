@@ -331,7 +331,7 @@ function seatOnPanel(root: HTMLElement, frame: HTMLElement) {
   const centerX = (left + right) / 2;
   const centerY = (top + bottom) / 2;
   const nudges: Record<string, { x: number; y: number }> = {
-    terminal: { x: 8, y: 4 },
+    terminal: { x: -6, y: -8 },
     stack: { x: 0, y: 0 },
     settle: { x: 0, y: 0 },
   };

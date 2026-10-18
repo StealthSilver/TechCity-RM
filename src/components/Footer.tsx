@@ -1,26 +1,19 @@
-import Image from "next/image";
+import BrandLockup from "@/components/BrandLockup";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "/#about", label: "About" },
-  { href: "/#working", label: "Working" },
   { href: "/#subjects", label: "Subjects" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#features", label: "Features" },
+  { href: "/all", label: "Roadmaps" },
 ];
 
-export default function Footer() {
+export default function Footer({ showThemeToggle = true }: { showThemeToggle?: boolean }) {
   return (
     <footer className="border-t border-foreground/10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-8 sm:px-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <Image
-              src="/logo.png"
-              alt="TechCity"
-              width={945}
-              height={921}
-              className="brand-mark h-11 w-11 object-contain"
-              unoptimized
-            />
+            <BrandLockup />
             <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
               <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Footer">
                 {links.map((link) => (
@@ -33,7 +26,7 @@ export default function Footer() {
                   </a>
                 ))}
               </nav>
-              <ThemeToggle />
+              {showThemeToggle ? <ThemeToggle /> : null}
             </div>
           </div>
           <div className="flex flex-col items-start gap-2 text-left md:items-end md:text-right">

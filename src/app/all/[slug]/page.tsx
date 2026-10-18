@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import AimlRoadmap from "@/components/AimlRoadmap";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import RoadmapSession from "@/components/RoadmapSession";
@@ -55,6 +56,15 @@ async function RoadmapBody({ params }: { params: Promise<{ slug: string }> }) {
 
   const others = catalog.filter((item) => item.id !== roadmap.id);
 
+  if (roadmap.id === "aiml") {
+    return (
+      <>
+        <AimlRoadmap roadmap={roadmap} />
+        <OtherRoadmaps others={others} />
+      </>
+    );
+  }
+
   return (
     <>
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-16 lg:py-20">
@@ -82,27 +92,32 @@ async function RoadmapBody({ params }: { params: Promise<{ slug: string }> }) {
         </div>
         <RoadmapSession roadmap={roadmap} />
       </section>
-
-      <section className="border-t border-foreground/10" aria-label="Other roadmaps">
-        <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/45">
-            Other roadmaps
-          </p>
-          <ul className="mt-4 flex gap-2 overflow-x-auto pb-1">
-            {others.map((item) => (
-              <li key={item.id} className="shrink-0">
-                <Link
-                  href={`/all/${item.id}`}
-                  className="inline-flex border border-foreground/15 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/60 transition-colors hover:border-foreground/40 hover:text-foreground"
-                >
-                  {item.short}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <OtherRoadmaps others={others} />
     </>
+  );
+}
+
+function OtherRoadmaps({ others }: { others: typeof catalog }) {
+  return (
+    <section className="border-t border-foreground/10" aria-label="Other roadmaps">
+      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/45">
+          Other roadmaps
+        </p>
+        <ul className="mt-4 flex gap-2 overflow-x-auto pb-1">
+          {others.map((item) => (
+            <li key={item.id} className="shrink-0">
+              <Link
+                href={`/all/${item.id}`}
+                className="inline-flex border border-foreground/15 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/60 transition-colors hover:border-foreground/40 hover:text-foreground"
+              >
+                {item.short}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 

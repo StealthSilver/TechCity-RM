@@ -17,6 +17,7 @@
 .hyperspeed-milestones {
   position: absolute;
   inset: 0;
+  z-index: 2;
   overflow: hidden;
   pointer-events: none;
 }
@@ -28,36 +29,56 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.28rem;
-  transform-origin: left bottom;
+  width: max-content;
+  transform-origin: 1px 100%;
   will-change: transform, opacity;
 }
 
-.hyperspeed-milestone-stem {
-  width: 1px;
-  height: 1.15rem;
-  margin-left: 2px;
-  background: linear-gradient(to bottom, rgba(3, 179, 195, 0.15), #03b3c3);
+.hyperspeed-milestone[data-side='left'] {
+  align-items: flex-end;
+  transform-origin: calc(100% - 1px) 100%;
 }
 
-.hyperspeed-milestone-dot {
-  width: 6px;
-  height: 6px;
+.hyperspeed-milestone-flag {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  color: #f4fbff;
+  white-space: nowrap;
+  padding: 0.3rem 0.48rem 0.3rem 0.42rem;
+  border: 1px solid rgba(3, 179, 195, 0.55);
+  border-left: 3px solid #03b3c3;
+  border-radius: 1px 3px 3px 1px;
+  background: linear-gradient(180deg, rgba(10, 32, 36, 0.94), rgba(6, 14, 18, 0.9));
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32);
+}
+
+.hyperspeed-milestone[data-side='left'] .hyperspeed-milestone-flag {
+  padding: 0.3rem 0.42rem 0.3rem 0.48rem;
+  border-left: 1px solid rgba(3, 179, 195, 0.55);
+  border-right: 3px solid #03b3c3;
+  border-radius: 3px 1px 1px 3px;
+}
+
+.hyperspeed-milestone-stake {
+  position: relative;
+  width: 2px;
+  height: 1.65rem;
   flex: none;
+  background: linear-gradient(to bottom, #e9fdff, #03b3c3 42%, #01484f);
+  box-shadow: 0 0 8px rgba(3, 179, 195, 0.45);
+}
+
+.hyperspeed-milestone-stake::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, 50%);
   border-radius: 999px;
   background: #03b3c3;
   box-shadow: 0 0 8px #03b3c3;
-}
-
-.hyperspeed-milestone-name {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  color: rgba(244, 247, 251, 0.94);
-  white-space: nowrap;
-  padding: 0.28rem 0.5rem;
-  border: 1px solid rgba(3, 179, 195, 0.45);
-  border-radius: 999px;
-  background: rgba(8, 8, 10, 0.72);
 }

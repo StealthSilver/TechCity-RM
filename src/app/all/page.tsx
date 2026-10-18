@@ -7,7 +7,7 @@ import { catalog } from "@/data/catalog";
 export const metadata: Metadata = {
   title: "All roadmaps",
   description:
-    "Six student roadmaps. DSA, AIML, cloud, and fullstack in MERN, Python, and Java.",
+    "Six student roadmaps. DSA, AI-ML, cloud, and fullstack in MERN, Python, and Java.",
 };
 
 export default function AllRoadmapsPage() {

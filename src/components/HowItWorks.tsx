@@ -50,7 +50,7 @@ export default function HowItWorks() {
                 Start where you already are.
               </h3>
               <p className="mt-3 max-w-md text-[15px] leading-7 text-foreground/65">
-                DSA, AIML, cloud, and data are the same kind of path. Open one,
+                DSA, AI-ML, cloud, and data are the same kind of path. Open one,
                 move to the stage you can do, and the next problem is waiting.
               </p>
             </article>

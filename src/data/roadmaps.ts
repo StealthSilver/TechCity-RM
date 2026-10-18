@@ -62,7 +62,7 @@ export const roadmaps: Roadmap[] = [
   },
   {
     id: "aiml",
-    short: "AIML",
+    short: "AI-ML",
     title: "Artificial intelligence and machine learning",
     line: "Models, how to judge them, and a project you can walk through.",
     outcome: "You can train a model, show where it fails, and explain the metric you trust.",
