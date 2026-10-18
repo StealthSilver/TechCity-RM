@@ -32,7 +32,7 @@ export default function RoadmapPage({
   params: Promise<{ slug: string }>;
 }) {
   return (
-    <div className="flex min-h-full flex-col bg-background font-sans text-foreground">
+    <div className="flex min-h-dvh flex-col bg-background font-sans text-foreground">
       <Navbar />
       <main className="flex flex-1 items-center justify-center px-5 py-24">
         <Suspense fallback={<ComingSoon />}>
