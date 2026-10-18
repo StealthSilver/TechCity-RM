@@ -1,0 +1,63 @@
+.hyperspeed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.hyperspeed canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hyperspeed-milestones {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hyperspeed-milestone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28rem;
+  transform-origin: left bottom;
+  will-change: transform, opacity;
+}
+
+.hyperspeed-milestone-stem {
+  width: 1px;
+  height: 1.15rem;
+  margin-left: 2px;
+  background: linear-gradient(to bottom, rgba(3, 179, 195, 0.15), #03b3c3);
+}
+
+.hyperspeed-milestone-dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 999px;
+  background: #03b3c3;
+  box-shadow: 0 0 8px #03b3c3;
+}
+
+.hyperspeed-milestone-name {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: rgba(244, 247, 251, 0.94);
+  white-space: nowrap;
+  padding: 0.28rem 0.5rem;
+  border: 1px solid rgba(3, 179, 195, 0.45);
+  border-radius: 999px;
+  background: rgba(8, 8, 10, 0.72);
+}
