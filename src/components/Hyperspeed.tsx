@@ -23,13 +23,13 @@ const THEMES = {
     dust: '#ffffff'
   },
   light: {
-    background: 'transparent',
-    road: '#efeff2',
-    lines: '#d0d0d7',
-    tail: ['#d856bf', '#6750a2', '#c247ac'],
-    head: ['#03b3c3', '#0e5ea5', '#324555'],
-    poles: ['#03b3c3'],
-    dust: '#18181b'
+    background: '#eef0f5',
+    road: '#dde1ea',
+    lines: '#b4bac8',
+    tail: ['#c247ac', '#6750a2', '#3b63c4'],
+    head: ['#0e8f86', '#3b63c4', '#5a6478'],
+    poles: ['#3b63c4'],
+    dust: '#3a3f4a'
   }
 };
 

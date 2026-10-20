@@ -17,8 +17,8 @@ export default function SectionHeading({
         </p>
       ) : null}
       <h2
-        className={`max-w-xl text-[1.7rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-[2rem] ${
-          index && label ? "mt-4" : ""
+        className={`max-w-xl text-[1.5rem] font-normal leading-[1.1] tracking-tight text-foreground sm:text-[1.85rem] md:text-[2rem] ${
+          index && label ? "mt-3 sm:mt-4" : ""
         }`}
       >
         {title}

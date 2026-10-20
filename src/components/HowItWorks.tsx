@@ -21,18 +21,18 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section id="working" className="scroll-mt-24 border-t border-foreground/10">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 lg:py-24">
         <SectionHeading
           index="02"
           label="Working"
           title="You always know the step you are on."
         />
 
-        <ol className="mt-12 grid gap-px bg-foreground/10 md:grid-cols-3">
+        <ol className="mt-10 grid gap-px bg-foreground/10 sm:mt-12 md:grid-cols-3">
           {steps.map((step) => (
-            <li key={step.index} className="bg-background py-8 md:px-6 md:first:pl-0 md:last:pr-0">
+            <li key={step.index} className="bg-background py-6 sm:py-8 md:px-5 lg:px-6 md:first:pl-0 md:last:pr-0">
               <p className="font-mono text-[11px] tracking-[0.16em] text-accent">{step.index}</p>
-              <h3 className="mt-4 max-w-xs text-xl font-normal leading-snug tracking-tight">
+              <h3 className="mt-3 max-w-xs text-lg font-normal leading-snug tracking-tight sm:mt-4 sm:text-xl">
                 {step.title}
               </h3>
               <p className="mt-3 max-w-sm text-[15px] leading-7 text-foreground/65">{step.body}</p>
@@ -40,13 +40,13 @@ export default function HowItWorks() {
           ))}
         </ol>
 
-        <div className="mt-8 border border-foreground/10 bg-surface">
+        <div className="mt-6 border border-foreground/10 bg-surface sm:mt-8">
           <div className="grid md:grid-cols-2">
-            <article className="border-b border-foreground/10 p-6 sm:p-8 md:border-r md:border-b-0">
+            <article className="border-b border-foreground/10 p-5 sm:p-8 md:border-r md:border-b-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-secondary">
                 For a student
               </p>
-              <h3 className="mt-4 text-2xl font-normal tracking-tight">
+              <h3 className="mt-3 text-xl font-normal tracking-tight sm:mt-4 sm:text-2xl">
                 Start where you already are.
               </h3>
               <p className="mt-3 max-w-md text-[15px] leading-7 text-foreground/65">
@@ -54,11 +54,11 @@ export default function HowItWorks() {
                 move to the stage you can do, and the next problem is waiting.
               </p>
             </article>
-            <article id="students" className="scroll-mt-24 p-6 sm:p-8">
+            <article id="students" className="scroll-mt-24 p-5 sm:p-8">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
                 For a college
               </p>
-              <h3 className="mt-4 text-2xl font-normal tracking-tight">
+              <h3 className="mt-3 text-xl font-normal tracking-tight sm:mt-4 sm:text-2xl">
                 The trainer sees the same stage.
               </h3>
               <p className="mt-3 max-w-md text-[15px] leading-7 text-foreground/65">

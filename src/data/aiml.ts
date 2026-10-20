@@ -1,320 +1,427 @@
-export type AimlItem = {
-  id: string;
-  title: string;
-  detail: string;
+import type { TrackContent } from "@/data/track";
+
+export const aimlTrack: TrackContent = {
+  id: "aiml",
+  prerequisites: [
+    {
+      id: "python-ready",
+      title: "Python on your machine",
+      detail: "A file runs, and a traceback points at a line you can open.",
+    },
+    {
+      id: "algebra",
+      title: "School algebra",
+      detail: "You can rearrange a short equation and say what a function returns.",
+    },
+  ],
+  sections: [
+    {
+      id: "programming",
+      title: "Programming and math",
+      summary: "Python, and the math a model actually uses.",
+      topics: [
+        {
+          id: "python-basics",
+          title: "Python basics",
+          detail: "Enough Python to hold a column of numbers and print a result.",
+          subtopics: [
+            { id: "py-vars", title: "Variables, types, and operators" },
+            { id: "py-control", title: "Conditionals and loops" },
+            { id: "py-functions", title: "Functions and modules" },
+            { id: "py-lists", title: "Lists, dicts, and comprehensions" },
+            { id: "py-files", title: "Reading files and printing results" },
+          ],
+        },
+        {
+          id: "python-objects",
+          title: "Objects in Python",
+          detail: "A class that keeps data, and a method that answers a question about it.",
+          subtopics: [
+            { id: "classes", title: "Classes and instances" },
+            { id: "methods", title: "Methods and state" },
+            { id: "dunder", title: "Common dunder methods" },
+          ],
+        },
+        {
+          id: "linear-algebra",
+          title: "Vectors and matrices",
+          detail: "A vector, a matrix, and the shape you check before you multiply.",
+          subtopics: [
+            { id: "vectors", title: "Vectors and scalar operations" },
+            { id: "matrices", title: "Matrix multiply and transpose" },
+            { id: "shapes", title: "Shapes and broadcasting intuition" },
+            { id: "norms", title: "Dot product, norms, distance" },
+          ],
+        },
+        {
+          id: "calculus",
+          title: "Derivatives and gradients",
+          detail: "A slope, a gradient, and how a change in one weight reaches the loss.",
+          subtopics: [
+            { id: "derivative", title: "Derivative as slope" },
+            { id: "partial", title: "Partial derivatives" },
+            { id: "chain", title: "Chain rule" },
+            { id: "grad-descent", title: "Gradient descent idea" },
+          ],
+        },
+        {
+          id: "probability",
+          title: "Probability and statistics",
+          detail: "A mean, a distribution, and Bayes as a sentence about evidence.",
+          subtopics: [
+            { id: "mean-var", title: "Mean, variance, standard deviation" },
+            { id: "distributions", title: "Common distributions" },
+            { id: "bayes", title: "Bayes rule in plain language" },
+            { id: "sampling", title: "Sampling and estimation" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "data",
+      title: "Data",
+      summary: "Frames, cleaning, and a chart that matches the question.",
+      topics: [
+        {
+          id: "numpy",
+          title: "NumPy",
+          detail: "Arrays, shapes, and vectorized work instead of Python loops.",
+          subtopics: [
+            { id: "ndarray", title: "ndarray creation and indexing" },
+            { id: "reshape", title: "Reshape and axis" },
+            { id: "vectorize", title: "Vectorized operations" },
+            { id: "agg", title: "Aggregations (mean, sum, argmax)" },
+          ],
+        },
+        {
+          id: "pandas",
+          title: "Pandas",
+          detail: "A frame, a column, and a filter that keeps the rows you mean.",
+          subtopics: [
+            { id: "series-frame", title: "Series and DataFrame" },
+            { id: "select-filter", title: "Select, filter, sort" },
+            { id: "groupby", title: "GroupBy and aggregations" },
+            { id: "join-merge", title: "Join and merge" },
+          ],
+        },
+        {
+          id: "cleaning",
+          title: "Cleaning",
+          detail: "Missing values, wrong types, and the row you leave as it is.",
+          subtopics: [
+            { id: "missing", title: "Missing values" },
+            { id: "dtypes", title: "Types and parsing" },
+            { id: "duplicates", title: "Duplicates and outliers" },
+            { id: "leakage", title: "Avoiding label leakage" },
+          ],
+        },
+        {
+          id: "eda",
+          title: "Exploratory analysis",
+          detail: "The question, the counts, and the chart that matches those counts.",
+          subtopics: [
+            { id: "describe", title: "Describe and value counts" },
+            { id: "charts", title: "Histograms, bars, scatter" },
+            { id: "correlation", title: "Correlation and relationships" },
+            { id: "story", title: "One-page EDA note" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "models",
+      title: "Classical machine learning",
+      summary: "A model, a metric, and the split you can defend.",
+      topics: [
+        {
+          id: "supervised",
+          title: "Linear models",
+          detail: "A line, a loss, and what a coefficient is saying.",
+          subtopics: [
+            { id: "regression", title: "Linear regression" },
+            { id: "loss-mse", title: "MSE / residual intuition" },
+            { id: "regularization-l", title: "Ridge and Lasso" },
+            { id: "feature-scale", title: "Feature scaling" },
+          ],
+        },
+        {
+          id: "classification",
+          title: "Classification",
+          detail: "A boundary, a threshold, and the class the model keeps missing.",
+          subtopics: [
+            { id: "logistic", title: "Logistic regression" },
+            { id: "threshold", title: "Thresholds and decision tradeoffs" },
+            { id: "confusion", title: "Confusion matrix" },
+            { id: "precision-recall", title: "Precision, recall, F1, ROC" },
+          ],
+        },
+        {
+          id: "trees-ensembles",
+          title: "Trees and ensembles",
+          detail: "One tree, then many; compare on the same split.",
+          subtopics: [
+            { id: "decision-tree", title: "Decision trees" },
+            { id: "random-forest", title: "Random forests" },
+            { id: "boosting", title: "Gradient boosting idea" },
+            { id: "feature-importance", title: "Feature importance caution" },
+          ],
+        },
+        {
+          id: "unsupervised",
+          title: "Clustering and dimensionality",
+          detail: "Groups without labels, and fewer axes that still hold the shape.",
+          subtopics: [
+            { id: "kmeans", title: "K-means" },
+            { id: "hierarchical", title: "Hierarchical clustering idea" },
+            { id: "pca", title: "PCA" },
+            { id: "cluster-eval", title: "Naming and checking clusters" },
+          ],
+        },
+        {
+          id: "evaluation",
+          title: "Evaluation and validation",
+          detail: "The holdout, the metric, and the slice where the model drops.",
+          subtopics: [
+            { id: "split", title: "Train / validation / test" },
+            { id: "cv", title: "Cross-validation" },
+            { id: "overfit", title: "Overfitting vs underfitting" },
+            { id: "slice", title: "Slice metrics and failure cases" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "deep",
+      title: "Deep learning",
+      summary: "Layers, a framework, and a loss that moves.",
+      topics: [
+        {
+          id: "nn-basics",
+          title: "Neural networks",
+          detail: "A perceptron, a layer, and an error passed back through the weights.",
+          subtopics: [
+            { id: "perceptron", title: "Perceptron and activations" },
+            { id: "forward", title: "Forward pass" },
+            { id: "backprop", title: "Backpropagation idea" },
+            { id: "loss-nn", title: "Loss functions for nets" },
+          ],
+        },
+        {
+          id: "framework",
+          title: "PyTorch or TensorFlow",
+          detail: "A tensor, a shape, and the training step the framework runs.",
+          subtopics: [
+            { id: "tensors", title: "Tensors and devices" },
+            { id: "autograd", title: "Autograd / gradients" },
+            { id: "datasets", title: "Datasets and dataloaders" },
+            { id: "train-loop", title: "A minimal training loop" },
+          ],
+        },
+        {
+          id: "mlp",
+          title: "Multilayer networks",
+          detail: "Hidden layers, a forward pass, and a loss that falls across epochs.",
+          subtopics: [
+            { id: "mlp-arch", title: "MLP architecture" },
+            { id: "init", title: "Initialization basics" },
+            { id: "batch-norm", title: "Batch norm / layer norm idea" },
+            { id: "digits", title: "Classify a simple dataset end to end" },
+          ],
+        },
+        {
+          id: "training-craft",
+          title: "Training craft",
+          detail: "Optimizers, schedules, and what you change when loss stalls.",
+          subtopics: [
+            { id: "sgd-adam", title: "SGD and Adam" },
+            { id: "lr", title: "Learning rate and schedules" },
+            { id: "dropout", title: "Dropout and weight decay" },
+            { id: "early-stop", title: "Early stopping" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "domains",
+      title: "Vision, language, and generation",
+      summary: "Images, text, and a model that produces something you can check.",
+      topics: [
+        {
+          id: "vision",
+          title: "Computer vision",
+          detail: "A convolution, a feature map, and a network that looks at an image.",
+          subtopics: [
+            { id: "cnn", title: "Convolutions and CNNs" },
+            { id: "pooling", title: "Pooling and receptive fields" },
+            { id: "transfer-vision", title: "Transfer learning for images" },
+            { id: "aug", title: "Augmentation" },
+          ],
+        },
+        {
+          id: "nlp",
+          title: "Language and sequences",
+          detail: "Tokens, embeddings, and attention as a way to look at what matters.",
+          subtopics: [
+            { id: "tokenize", title: "Tokenization" },
+            { id: "embeddings", title: "Word / token embeddings" },
+            { id: "rnn", title: "RNN / sequence models idea" },
+            { id: "attention", title: "Attention" },
+          ],
+        },
+        {
+          id: "llm",
+          title: "Large language models",
+          detail: "A pretrained model, a prompt, and a small fine-tune when needed.",
+          subtopics: [
+            { id: "prompt", title: "Prompting for structured answers" },
+            { id: "rag-idea", title: "Retrieval-augmented idea" },
+            { id: "fine-tune", title: "Fine-tuning overview" },
+            { id: "eval-llm", title: "Checking LLM outputs" },
+          ],
+        },
+        {
+          id: "generative",
+          title: "Generative models",
+          detail: "A model that produces, and the check you use before you keep an output.",
+          subtopics: [
+            { id: "gen-basics", title: "What generation means" },
+            { id: "sampling", title: "Sampling and temperature intuition" },
+            { id: "reject", title: "Rejection criteria for outputs" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "ship",
+      title: "Deployment",
+      summary: "An endpoint, a container, and a run you can find again.",
+      topics: [
+        {
+          id: "api",
+          title: "Model APIs",
+          detail: "One route, and a prediction a client can call.",
+          subtopics: [
+            { id: "fastapi", title: "FastAPI / Flask endpoint" },
+            { id: "schema", title: "Request and response schema" },
+            { id: "batch-infer", title: "Batch vs single inference" },
+          ],
+        },
+        {
+          id: "docker",
+          title: "Packaging",
+          detail: "An image, a port, and the environment the model expects.",
+          subtopics: [
+            { id: "dockerfile", title: "Dockerfile for inference" },
+            { id: "env", title: "Env vars and secrets" },
+            { id: "repro", title: "Reproducible runs" },
+          ],
+        },
+        {
+          id: "tracking",
+          title: "Experiment tracking",
+          detail: "A run with a name, a metric, and a model you can find.",
+          subtopics: [
+            { id: "log-metrics", title: "Log metrics and params" },
+            { id: "artifacts", title: "Model artifacts" },
+            { id: "compare-runs", title: "Compare runs" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "portfolio",
+      title: "Projects and interviews",
+      summary: "Work you can walk through, and the questions that follow.",
+      topics: [
+        {
+          id: "projects",
+          title: "Portfolio projects",
+          detail: "End to end, from the question to the decision the model supports.",
+          subtopics: [
+            { id: "tabular-project", title: "One tabular prediction project" },
+            { id: "vision-or-nlp", title: "One vision or NLP project" },
+            { id: "writeup", title: "Write-up: metric, failure, next step" },
+          ],
+        },
+        {
+          id: "system-design",
+          title: "ML system design",
+          detail: "Data, model, metric, and the failure you name before you train.",
+          subtopics: [
+            { id: "problem-framing", title: "Frame the prediction problem" },
+            { id: "data-plan", title: "Data and labeling plan" },
+            { id: "metric-choice", title: "Metric and tradeoffs" },
+            { id: "monitor", title: "Monitoring after ship" },
+          ],
+        },
+        {
+          id: "interviews",
+          title: "Interview practice",
+          detail: "Coding, the math, and an explanation of a model you trained.",
+          subtopics: [
+            { id: "ml-coding", title: "ML coding drills" },
+            { id: "concept-qs", title: "Concept questions" },
+            { id: "project-story", title: "Ten-minute project story" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "feature-eng",
+      title: "Feature engineering",
+      summary: "The columns you build often matter more than the model name.",
+      topics: [
+        {
+          id: "encoding",
+          title: "Encoding and transforms",
+          detail: "Categorical, numeric, and leakage-safe pipelines.",
+          subtopics: [
+            { id: "one-hot", title: "One-hot and target encoding caution" },
+            { id: "scaling-fe", title: "Scaling and robust transforms" },
+            { id: "datetime", title: "Datetime and cyclical features" },
+            { id: "pipeline", title: "sklearn-style pipelines" },
+          ],
+        },
+        {
+          id: "selection",
+          title: "Selection and leakage",
+          detail: "Choose features without peeking at the test set.",
+          subtopics: [
+            { id: "corr-filter", title: "Correlation and filters" },
+            { id: "importance-sel", title: "Model-based selection caution" },
+            { id: "leak-check", title: "Leakage checklist" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "mlops",
+      title: "MLOps basics",
+      summary: "Version data, models, and the checks after deploy.",
+      topics: [
+        {
+          id: "data-version",
+          title: "Data and model versioning",
+          detail: "A run you can find again next month.",
+          subtopics: [
+            { id: "dataset-snap", title: "Dataset snapshots" },
+            { id: "model-registry", title: "Model registry idea" },
+            { id: "repro-seed", title: "Seeds and environment pins" },
+          ],
+        },
+        {
+          id: "serving-monitor",
+          title: "Serving and monitoring",
+          detail: "Latency, drift, and when to retrain.",
+          subtopics: [
+            { id: "batch-vs-online", title: "Batch vs online inference" },
+            { id: "drift", title: "Data / prediction drift" },
+            { id: "alerts-ml", title: "Alert on metric drop" },
+            { id: "retrain", title: "Retrain trigger" },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
-export type AimlTopic = AimlItem & {
-  problem: string;
-  hint: string;
-};
-
-export type AimlPhase = {
-  id: string;
-  title: string;
-  summary: string;
-  topics: AimlTopic[];
-};
-
-export const aimlPrerequisites: AimlItem[] = [
-  {
-    id: "algebra",
-    title: "Algebra you can use",
-    detail: "You can rearrange an equation and say what a function returns.",
-  },
-  {
-    id: "python-ready",
-    title: "Python on your machine",
-    detail: "A file runs, and a traceback points at a line you can open.",
-  },
-  {
-    id: "tables",
-    title: "Tables",
-    detail: "Rows, columns, and a blank cell are familiar from a spreadsheet.",
-  },
-  {
-    id: "prediction",
-    title: "A prediction you can name",
-    detail: "Rent, spam, a grade, a pass or a fail. You can say what the model should output.",
-  },
-];
-
-export const aimlPhases: AimlPhase[] = [
-  {
-    id: "programming",
-    title: "Programming and math",
-    summary: "Python, and the math a model actually uses.",
-    topics: [
-      {
-        id: "python-basics",
-        title: "Python basics",
-        detail: "Variables, loops, and functions. Enough Python to hold a column of numbers and print a result.",
-        problem: "Summarize a list of scores",
-        hint: "Sum, count, and the average. Print each one. They have to agree.",
-      },
-      {
-        id: "python-objects",
-        title: "Objects in Python",
-        detail: "A class that keeps data, and a method that answers a question about it.",
-        problem: "A class that counts its own rows",
-        hint: "Store the rows. The count is a method. It reads what you stored.",
-      },
-      {
-        id: "linear-algebra",
-        title: "Vectors and matrices",
-        detail: "A vector, a matrix, and the shape you check before you multiply.",
-        problem: "Multiply a 2×3 matrix by a 3×1 vector",
-        hint: "Write both shapes first. The inner numbers have to match.",
-      },
-      {
-        id: "calculus",
-        title: "Derivatives and the chain rule",
-        detail: "A slope, a gradient, and how a change in one weight reaches the loss.",
-        problem: "Say which way the loss falls",
-        hint: "The derivative is the slope. Name the direction that makes the loss smaller.",
-      },
-      {
-        id: "probability",
-        title: "Probability and statistics",
-        detail: "A mean, a distribution, and Bayes as a sentence about evidence.",
-        problem: "Which outcome is more likely",
-        hint: "Write the starting chance and the new evidence. Then one sentence. The formula comes after the sentence.",
-      },
-    ],
-  },
-  {
-    id: "data",
-    title: "Data",
-    summary: "Frames, cleaning, and a chart that matches the question.",
-    topics: [
-      {
-        id: "numpy",
-        title: "NumPy",
-        detail: "Arrays, shapes, and a vectorized operation in place of a Python loop.",
-        problem: "Mean of each column",
-        hint: "Check the axis. Axis 0 runs down the rows. Print the shape of the result.",
-      },
-      {
-        id: "pandas",
-        title: "Pandas",
-        detail: "A frame, a column, and a filter that keeps the rows you mean.",
-        problem: "Keep the rows from one campus",
-        hint: "Filter, then count. The count has to match a spreadsheet filter on the same file.",
-      },
-      {
-        id: "cleaning",
-        title: "Cleaning",
-        detail: "Missing values, wrong types, and the row you leave as it is.",
-        problem: "Orders with a missing city",
-        hint: "Count them. Show them. Leave the city blank.",
-      },
-      {
-        id: "charts",
-        title: "Charts",
-        detail: "A comparison, an axis, and a title that states the claim.",
-        problem: "Which campus grew",
-        hint: "A bar for the comparison. The title is the sentence, not the column name.",
-      },
-      {
-        id: "eda",
-        title: "Exploratory analysis",
-        detail: "The question, the counts, and the chart that matches those counts.",
-        problem: "Summarize a class column",
-        hint: "Count, missing values, then one chart. The chart has to match the count.",
-      },
-    ],
-  },
-  {
-    id: "models",
-    title: "Machine learning",
-    summary: "A model, a metric, and the split you can defend.",
-    topics: [
-      {
-        id: "supervised",
-        title: "Linear models",
-        detail: "A line, a loss, and what a coefficient is saying about the prediction.",
-        problem: "Predict rent from three features",
-        hint: "Scale the features first. Then say which coefficient moved the rent.",
-      },
-      {
-        id: "classification",
-        title: "Classification",
-        detail: "A boundary, a threshold, and the class the model keeps missing.",
-        problem: "Spam or not",
-        hint: "Look at false negatives before you celebrate accuracy.",
-      },
-      {
-        id: "unsupervised",
-        title: "Clustering and PCA",
-        detail: "Groups without labels, and a smaller set of axes that still hold the shape.",
-        problem: "Find three groups in the table",
-        hint: "Name each group from the columns that separate it. A named group is the result.",
-      },
-      {
-        id: "ensembles",
-        title: "Forests and boosting",
-        detail: "Many small models, and a comparison against one tree on the same rows.",
-        problem: "Beat a single tree on the same split",
-        hint: "Same training rows. Same test rows. Report both scores side by side.",
-      },
-      {
-        id: "evaluation",
-        title: "Metrics and the split",
-        detail: "The holdout, the metric, and the slice where the model drops.",
-        problem: "Where does the model fail?",
-        hint: "Hold out a slice the training set barely saw. Report that number.",
-      },
-    ],
-  },
-  {
-    id: "deep",
-    title: "Deep learning",
-    summary: "Layers, a framework, and a loss that moves.",
-    topics: [
-      {
-        id: "nn-basics",
-        title: "Neural networks",
-        detail: "A perceptron, a layer, and an error passed back through the weights.",
-        problem: "One neuron, two inputs",
-        hint: "Write the weighted sum, then the output. Change one weight and say how the output moves.",
-      },
-      {
-        id: "framework",
-        title: "PyTorch or TensorFlow",
-        detail: "A tensor, a shape, and the training step the framework runs for you.",
-        problem: "A tensor you can add to",
-        hint: "Print the shape after every operation. Most bugs are a shape.",
-      },
-      {
-        id: "mlp",
-        title: "A multilayer network",
-        detail: "Hidden layers, a forward pass, and a loss that falls across epochs.",
-        problem: "Classify handwritten digits",
-        hint: "Print the tensor shapes before you train. Then train. Then report the holdout accuracy.",
-      },
-      {
-        id: "optimizers",
-        title: "Optimizers",
-        detail: "SGD and Adam, and the one change you make when the loss stalls.",
-        problem: "A loss that stops falling",
-        hint: "Lower the learning rate once. Say whether the loss moved. Change one thing at a time.",
-      },
-      {
-        id: "regularization",
-        title: "Overfitting",
-        detail: "Dropout, weight decay, and a training score that has left the holdout behind.",
-        problem: "Training accuracy up, holdout flat",
-        hint: "Add one regularizer. Report the training number and the holdout number again.",
-      },
-    ],
-  },
-  {
-    id: "domains",
-    title: "Vision, language, and generation",
-    summary: "Images, text, and a model that produces something you can check.",
-    topics: [
-      {
-        id: "vision",
-        title: "Computer vision",
-        detail: "A convolution, a feature map, and a network that looks at an image.",
-        problem: "Tell two kinds of image apart",
-        hint: "Show one image the model gets right and one it misses. Say what is in the miss.",
-      },
-      {
-        id: "nlp",
-        title: "Sequences and attention",
-        detail: "A sequence, a recurrent net, and attention as a way to look at the words that matter.",
-        problem: "Predict the next word in a short sentence",
-        hint: "Show the words the model was allowed to see. The word it predicts stays hidden.",
-      },
-      {
-        id: "llm",
-        title: "Large language models",
-        detail: "A pretrained model, a prompt, and a small fine-tune when the prompt is not enough.",
-        problem: "A prompt that returns a structured answer",
-        hint: "Ask for one format. Show a failure. Change the prompt once and show the new answer.",
-      },
-      {
-        id: "generative",
-        title: "Generative models",
-        detail: "A model that produces, and the check you use before you keep an output.",
-        problem: "Generate three answers and keep one",
-        hint: "Write the rule you used to reject the other two.",
-      },
-    ],
-  },
-  {
-    id: "ship",
-    title: "Deployment",
-    summary: "An endpoint, a container, and a run you can find again.",
-    topics: [
-      {
-        id: "api",
-        title: "An API for the model",
-        detail: "FastAPI or Flask, one route, and a prediction a client can call.",
-        problem: "POST a row, get a prediction",
-        hint: "The route accepts the same fields you trained on. Name them. Reject a missing field.",
-      },
-      {
-        id: "docker",
-        title: "Docker",
-        detail: "An image, a port, and the environment the model expects.",
-        problem: "Run the same image twice",
-        hint: "Name the file or variable the image still needs when the second run fails.",
-      },
-      {
-        id: "hosting",
-        title: "Hosting",
-        detail: "A small cloud endpoint or a Hugging Face Space someone else can open.",
-        problem: "A URL that returns a prediction",
-        hint: "Open it in a private window. The page has to answer without your laptop.",
-      },
-      {
-        id: "tracking",
-        title: "Experiment tracking",
-        detail: "MLflow or Weights & Biases, so a run has a name, a metric, and a model you can find.",
-        problem: "Find last week’s best run",
-        hint: "Log the metric and the data version with the run.",
-      },
-    ],
-  },
-  {
-    id: "portfolio",
-    title: "Projects and interviews",
-    summary: "Work you can walk through, and the questions that follow.",
-    topics: [
-      {
-        id: "projects",
-        title: "Three projects",
-        detail: "End to end, from the question to the decision the model supports.",
-        problem: "Walk through your best project",
-        hint: "What it predicts, what you measured, and what you would leave unpublished.",
-      },
-      {
-        id: "competition",
-        title: "A public score",
-        detail: "One competition or a public notebook with a score you did not assign yourself.",
-        problem: "Submit once and read the leaderboard",
-        hint: "Write what you changed between the local score and the public score.",
-      },
-      {
-        id: "system-design",
-        title: "Machine learning system design",
-        detail: "Data, model, metric, and the failure you name before you train.",
-        problem: "Design a model that flags late assignments",
-        hint: "Name the data, the metric, and the student the metric will treat unfairly.",
-      },
-      {
-        id: "interviews",
-        title: "Interview practice",
-        detail: "Coding, the math, and an explanation of a model you trained.",
-        problem: "Explain one project in ten minutes",
-        hint: "Start with the decision a person sees. The architecture comes after.",
-      },
-    ],
-  },
-];
-
-export const aimlTopicIds = aimlPhases.flatMap((phase) => phase.topics.map((topic) => topic.id));
-
-export const aimlPrerequisiteIds = aimlPrerequisites.map((item) => item.id);

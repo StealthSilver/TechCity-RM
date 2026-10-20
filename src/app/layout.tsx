@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { AuthDialog } from "@/components/auth/AuthDialog";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -87,8 +89,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#03060f",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#090b10" },
+  ],
+  colorScheme: "dark light",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -100,11 +109,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-[#03060f] font-sans text-[#f4f7fb]">
+      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <Script id="theme-init" strategy="beforeInteractive">
-          {`(function(){document.documentElement.dataset.theme="dark";function strip(node){if(!node||node.nodeType!==1)return;if(node.hasAttribute("data-cursor-ref"))node.removeAttribute("data-cursor-ref");var list=node.querySelectorAll("[data-cursor-ref]");for(var i=0;i<list.length;i++)list[i].removeAttribute("data-cursor-ref")}new MutationObserver(function(records){for(var i=0;i<records.length;i++){var rec=records[i];if(rec.type==="attributes")rec.target.removeAttribute("data-cursor-ref");var added=rec.addedNodes;for(var j=0;j<added.length;j++)strip(added[j])}}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:["data-cursor-ref"]})})()`}
+          {`(function(){var theme="dark";try{var saved=localStorage.getItem("techcity-rm-theme");if(saved==="light"||saved==="dark")theme=saved}catch(e){}document.documentElement.dataset.theme=theme;var meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",theme==="light"?"#f7f8fb":"#090b10");function strip(node){if(!node||node.nodeType!==1)return;if(node.hasAttribute("data-cursor-ref"))node.removeAttribute("data-cursor-ref");var list=node.querySelectorAll("[data-cursor-ref]");for(var i=0;i<list.length;i++)list[i].removeAttribute("data-cursor-ref")}new MutationObserver(function(records){for(var i=0;i<records.length;i++){var rec=records[i];if(rec.type==="attributes")rec.target.removeAttribute("data-cursor-ref");var added=rec.addedNodes;for(var j=0;j<added.length;j++)strip(added[j])}}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:["data-cursor-ref"]})})()`}
         </Script>
-        {children}
+        <AuthProvider>
+          {children}
+          <AuthDialog />
+        </AuthProvider>
       </body>
     </html>
   );

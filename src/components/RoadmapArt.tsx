@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import Link from "next/link";
+import RequireAuthLink from "@/components/auth/RequireAuthLink";
 import { Settle, Stack, Terminal } from "@lucasmarkes/hairline/react";
 
 const COS = Math.cos(Math.PI / 6);
@@ -69,7 +69,7 @@ export default function RoadmapCard({ id, title }: { id: string; title: string }
   const point = usePointerSpring();
 
   return (
-    <Link
+    <RequireAuthLink
       href={`/all/${id}`}
       className="group flex h-full flex-col border border-foreground/10 bg-surface transition-colors duration-300 hover:border-accent"
     >
@@ -78,15 +78,15 @@ export default function RoadmapCard({ id, title }: { id: string; title: string }
         onPointerMove={point.move}
         onPointerLeave={point.leave}
       >
-        <div className="aspect-[5/4] overflow-hidden border-b border-foreground/10 bg-foreground/[0.03]">
+        <div className="relative aspect-[5/4] overflow-hidden border-b border-foreground/10 bg-foreground/[0.03]">
           {id === "cloud" || id === "mern" || id === "python" ? (
             <HairlineArt id={id} />
           ) : (
             <Figure id={id} point={point.value} />
           )}
         </div>
-        <div className="flex items-end justify-between gap-3 px-4 py-4">
-          <h2 className="text-lg font-normal leading-snug tracking-tight transition-colors duration-300 group-hover:text-accent">
+        <div className="flex items-end justify-between gap-3 px-3 py-3.5 sm:px-4 sm:py-4">
+          <h2 className="text-base font-normal leading-snug tracking-tight transition-colors duration-300 group-hover:text-accent sm:text-lg">
             {title}
           </h2>
           <span
@@ -97,7 +97,7 @@ export default function RoadmapCard({ id, title }: { id: string; title: string }
           </span>
         </div>
       </div>
-    </Link>
+    </RequireAuthLink>
   );
 }
 

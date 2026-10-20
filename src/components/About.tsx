@@ -21,35 +21,38 @@ const steps = [
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24 bg-[#08080a] text-white">
-      <div className="mx-auto max-w-7xl px-5 py-20 text-left sm:px-8 sm:py-28">
-        <h2 className="max-w-5xl text-2xl font-[510] leading-[1.33] tracking-[-0.012em] text-[#8a8f98] sm:text-[2rem] sm:leading-[1.125] sm:tracking-[-0.022em] md:text-[2.5rem] md:leading-[1.1] xl:text-5xl xl:leading-none">
-          <strong className="font-[510] text-[#f7f8f8]">A new species of study tool.</strong>{" "}
+    <section id="about" className="scroll-mt-24 bg-background text-foreground">
+      <div className="mx-auto max-w-7xl px-5 py-16 text-left sm:px-8 sm:py-24 lg:py-28">
+        <h2 className="max-w-5xl text-[1.45rem] font-[510] leading-[1.33] tracking-[-0.012em] text-foreground/55 sm:text-[2rem] sm:leading-[1.125] sm:tracking-[-0.022em] md:text-[2.5rem] md:leading-[1.1] xl:text-5xl xl:leading-none">
+          <strong className="font-[510] text-foreground">A new species of study tool.</strong>{" "}
           Purpose-built for students who need one path through a subject, TechCity sets a new
           standard for learning and finishing the work.
         </h2>
 
-        <ul className="mt-16 grid grid-cols-1 sm:mt-24 lg:grid-cols-3">
+        <ul className="mt-12 grid grid-cols-1 sm:mt-16 md:grid-cols-3 md:mt-20 lg:mt-24">
           {steps.map((step, index) => (
             <li
               key={step.index}
-              className={`flex min-h-[22rem] flex-col lg:min-h-[29.25rem] ${
+              className={`flex flex-col md:min-h-[24rem] lg:min-h-[29.25rem] ${
                 index < steps.length - 1
-                  ? "border-b border-white/[0.08] pb-8 lg:border-b-0 lg:border-r lg:pb-0"
+                  ? "border-b border-foreground/10 pb-8 md:border-b-0 md:border-r md:pb-0"
                   : ""
-              } ${index > 0 ? "pt-8 lg:pt-0" : ""} ${
-                index === 0 ? "lg:pr-8" : index === 1 ? "lg:px-8" : "lg:pl-8"
+              } ${index > 0 ? "pt-8 md:pt-0" : ""} ${
+                index === 0 ? "md:pr-5 lg:pr-8" : index === 1 ? "md:px-5 lg:px-8" : "md:pl-5 lg:pl-8"
               }`}
             >
-              <span className="font-mono text-xs uppercase text-[#8a8f98]/40">{step.index}</span>
-              <div className="flex flex-1 items-center justify-center py-8" aria-hidden="true">
+              <span className="font-mono text-xs uppercase text-foreground/35">{step.index}</span>
+              <div
+                className="about-well mx-auto my-6 flex w-full max-w-xs flex-1 items-center justify-center rounded-xl bg-[var(--about-well)] py-6 sm:my-8 sm:py-8"
+                aria-hidden="true"
+              >
                 {step.mark}
               </div>
               <div className="flex max-w-sm flex-col gap-2">
-                <h3 className="text-[15px] font-[510] leading-6 tracking-[-0.011em] text-[#d0d6e0]">
+                <h3 className="text-[15px] font-[510] leading-6 tracking-[-0.011em] text-foreground">
                   {step.title}
                 </h3>
-                <p className="text-[15px] leading-6 tracking-[-0.011em] text-[#8a8f98]">
+                <p className="text-[15px] leading-6 tracking-[-0.011em] text-foreground/55">
                   {step.body}
                 </p>
               </div>
@@ -69,17 +72,17 @@ function StageFigure() {
   ];
 
   return (
-      <svg viewBox="0 0 280 230" className="w-full max-w-xs" aria-hidden="true">
+    <svg viewBox="0 0 280 230" className="w-full max-w-xs" aria-hidden="true">
       {layers.map((layer) => (
         <Slab key={layer.y} y={layer.y} tone={layer.tone} />
       ))}
       <g className="about-lift">
         <Slab y={30} tone="bright" />
         <path
+          className="about-line"
           d="M118 56h44M126 66h28"
           fill="none"
-          stroke="#d0d6e0"
-          strokeWidth="0.8"
+          strokeWidth="1.1"
           strokeLinecap="round"
         />
       </g>
@@ -92,26 +95,26 @@ function HintFigure() {
     <svg viewBox="0 0 280 230" className="w-full max-w-xs" aria-hidden="true">
       <Slab y={128} tone="dim" wide />
       <path
+        className="about-stroke-dim"
         d="M78 154h86M86 164h62"
         fill="none"
-        stroke="#3e3e44"
-        strokeWidth="0.8"
+        strokeWidth="1"
         strokeLinecap="round"
       />
       <g className="about-lift">
         <Slab y={58} tone="bright" wide />
         <path
+          className="about-stroke-mid"
           d="M78 84h108M86 94h84M94 104h52"
           fill="none"
-          stroke="#62666d"
-          strokeWidth="0.8"
+          strokeWidth="1"
           strokeLinecap="round"
         />
         <path
+          className="about-line"
           d="M148 100h42"
           fill="none"
-          stroke="#d0d6e0"
-          strokeWidth="1.1"
+          strokeWidth="1.35"
           strokeLinecap="round"
         />
       </g>
@@ -129,16 +132,22 @@ function NextFigure() {
 
   return (
     <svg viewBox="0 0 280 230" className="w-full max-w-xs" aria-hidden="true">
-      <line x1="58" y1="170" x2="226" y2="74" stroke="#2e2e32" strokeWidth="0.8" />
       <line
-        className="feat-line"
+        className="about-stroke-side"
+        x1="58"
+        y1="170"
+        x2="226"
+        y2="74"
+        strokeWidth="1"
+      />
+      <line
+        className="feat-line about-line"
         pathLength={1}
         x1="58"
         y1="170"
         x2="226"
         y2="74"
-        stroke="#d0d6e0"
-        strokeWidth="0.9"
+        strokeWidth="1.15"
         strokeLinecap="round"
       />
       {nodes.map((node, index) => (
@@ -167,17 +176,22 @@ function Slab({
   const mid = 140;
   const depth = wide ? 34 : 30;
   const thick = 16;
-  const stroke = tone === "bright" ? "#d0d6e0" : tone === "mid" ? "#62666d" : "#3e3e44";
-  const side = tone === "bright" ? "#62666d" : "#2e2e32";
+  const edge =
+    tone === "bright"
+      ? "about-stroke-bright"
+      : tone === "mid"
+        ? "about-stroke-mid"
+        : "about-stroke-dim";
+  const side = tone === "bright" ? "about-stroke-mid" : "about-stroke-side";
   const top = `M ${left} ${y + depth} L ${mid} ${y} L ${right} ${y + depth} L ${mid} ${y + depth * 2} Z`;
   const leftFace = `M ${left} ${y + depth} L ${mid} ${y + depth * 2} L ${mid} ${y + depth * 2 + thick} L ${left} ${y + depth + thick} Z`;
   const rightFace = `M ${mid} ${y + depth * 2} L ${right} ${y + depth} L ${right} ${y + depth + thick} L ${mid} ${y + depth * 2 + thick} Z`;
 
   return (
     <g>
-      <path d={leftFace} fill="#08080a" stroke={side} strokeWidth="0.7" />
-      <path d={rightFace} fill="#08080a" stroke={side} strokeWidth="0.7" />
-      <path d={top} fill="#08080a" stroke={stroke} strokeWidth="0.7" />
+      <path className={`about-face-left ${side}`} d={leftFace} strokeWidth="1" />
+      <path className={`about-face-right ${side}`} d={rightFace} strokeWidth="1" />
+      <path className={`about-face-top ${edge}`} d={top} strokeWidth="1" />
     </g>
   );
 }
@@ -191,8 +205,13 @@ function Cube({
   y: number;
   tone: "dim" | "mid" | "bright";
 }) {
-  const stroke = tone === "bright" ? "#d0d6e0" : tone === "mid" ? "#62666d" : "#3e3e44";
-  const side = tone === "bright" ? "#62666d" : "#2e2e32";
+  const edge =
+    tone === "bright"
+      ? "about-stroke-bright"
+      : tone === "mid"
+        ? "about-stroke-mid"
+        : "about-stroke-dim";
+  const side = tone === "bright" ? "about-stroke-mid" : "about-stroke-side";
   const s = 22;
   const top = `M ${x} ${y + 12} L ${x + s} ${y} L ${x + s * 2} ${y + 12} L ${x + s} ${y + 24} Z`;
   const left = `M ${x} ${y + 12} L ${x + s} ${y + 24} L ${x + s} ${y + 40} L ${x} ${y + 28} Z`;
@@ -200,9 +219,9 @@ function Cube({
 
   return (
     <g>
-      <path d={left} fill="#08080a" stroke={side} strokeWidth="0.7" />
-      <path d={right} fill="#08080a" stroke={side} strokeWidth="0.7" />
-      <path d={top} fill="#08080a" stroke={stroke} strokeWidth="0.7" />
+      <path className={`about-face-left ${side}`} d={left} strokeWidth="1" />
+      <path className={`about-face-right ${side}`} d={right} strokeWidth="1" />
+      <path className={`about-face-top ${edge}`} d={top} strokeWidth="1" />
     </g>
   );
 }

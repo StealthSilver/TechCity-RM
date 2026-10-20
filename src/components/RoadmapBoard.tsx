@@ -22,16 +22,16 @@ export default function RoadmapBoard({
 
   return (
     <div className="lesson-card border border-foreground/10">
-      <div className="flex items-center justify-between gap-4 border-b border-foreground/10 px-4 py-3 sm:px-5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+      <div className="flex items-center justify-between gap-3 border-b border-foreground/10 px-3 py-3 sm:gap-4 sm:px-5">
+        <p className="min-w-0 truncate font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
           {roadmap.short}
         </p>
-        <p className="font-mono text-[11px] tabular-nums tracking-[0.14em] text-foreground/45">
+        <p className="shrink-0 font-mono text-[11px] tabular-nums tracking-[0.14em] text-foreground/45">
           {String(stageIndex + 1).padStart(2, "0")} / 06
         </p>
       </div>
 
-      <ol className="px-4 py-4 sm:px-5">
+      <ol className="px-3 py-3 sm:px-5 sm:py-4">
         {roadmap.stages.map((item, index) => {
           const done = index < progressStage;
           const current = index === progressStage;
@@ -84,9 +84,9 @@ export default function RoadmapBoard({
         })}
       </ol>
 
-      <div className="border-t border-foreground/10 bg-foreground/[0.03] px-4 py-4 sm:px-5">
+      <div className="border-t border-foreground/10 bg-foreground/[0.03] px-3 py-4 sm:px-5">
         <div className="flex items-center justify-between gap-3">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-secondary">
+          <p className="min-w-0 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-secondary">
             {audience === "college" ? "This week’s problem" : status}
           </p>
           <div className="flex gap-1">

@@ -13,7 +13,7 @@ export function applyTheme(theme: "light" | "dark") {
   }
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
-    meta.setAttribute("content", theme === "light" ? "#ffffff" : "#090b10");
+    meta.setAttribute("content", theme === "light" ? "#f7f8fb" : "#090b10");
   }
 }
 

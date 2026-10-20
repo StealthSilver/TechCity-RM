@@ -54,6 +54,28 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32);
 }
 
+html:not([data-theme="dark"]) .hyperspeed-milestone-flag {
+  color: #1a2438;
+  border-color: rgba(59, 99, 196, 0.4);
+  border-left-color: #3b63c4;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(240, 243, 250, 0.95));
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+}
+
+html:not([data-theme="dark"]) .hyperspeed-milestone[data-side='left'] .hyperspeed-milestone-flag {
+  border-right-color: #3b63c4;
+}
+
+html:not([data-theme="dark"]) .hyperspeed-milestone-stake {
+  background: linear-gradient(to bottom, #e8eeff, #3b63c4 42%, #243f8a);
+  box-shadow: 0 0 8px rgba(59, 99, 196, 0.3);
+}
+
+html:not([data-theme="dark"]) .hyperspeed-milestone-stake::after {
+  background: #3b63c4;
+  box-shadow: 0 0 8px #3b63c4;
+}
+
 .hyperspeed-milestone[data-side='left'] .hyperspeed-milestone-flag {
   padding: 0.3rem 0.42rem 0.3rem 0.48rem;
   border-left: 1px solid rgba(3, 179, 195, 0.55);
