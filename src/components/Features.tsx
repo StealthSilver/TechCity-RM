@@ -20,7 +20,7 @@ const cards: {
   },
   {
     title: "Export as PDF",
-    body: "Download the path you are on, with the stages you have finished.",
+    body: "Trainer guides for 30 or 90 days — how to teach the path, day by day.",
     motion: <ExportMotion />,
   },
   {

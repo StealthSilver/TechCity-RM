@@ -3,6 +3,7 @@
 import { useLayoutEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/AuthProvider";
+import ExportPdfButton from "@/components/ExportPdfButton";
 import type { Roadmap } from "@/data/roadmaps";
 import {
   trackPrerequisiteIds,
@@ -155,10 +156,13 @@ export default function TrackRoadmap({
         <span className="text-foreground/70">{roadmap.short}</span>
       </nav>
 
-      <header className="mt-4 sm:mt-6">
+      <header className="mt-4 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <h1 className="text-balance text-[1.55rem] font-normal leading-[1.15] tracking-tight sm:text-[2.5rem] sm:leading-[1.05] md:text-[2.75rem]">
           {roadmap.title}
         </h1>
+        <div className="shrink-0 self-start sm:self-end">
+          <ExportPdfButton roadmap={roadmap} content={content} />
+        </div>
       </header>
 
       <section
