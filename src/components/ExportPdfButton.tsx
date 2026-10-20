@@ -57,7 +57,7 @@ export default function ExportPdfButton({
   }
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className="relative w-full sm:w-auto">
       <button
         type="button"
         aria-haspopup="menu"
@@ -65,7 +65,7 @@ export default function ExportPdfButton({
         aria-controls={menuId}
         disabled={pending}
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex h-10 items-center gap-2 border border-foreground/15 bg-surface px-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent/40 hover:text-accent disabled:cursor-wait disabled:opacity-60 sm:h-9 sm:text-[11px]"
+        className="inline-flex h-10 w-full items-center justify-center gap-2 border border-foreground/15 bg-surface px-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent/40 hover:text-accent disabled:cursor-wait disabled:opacity-60 sm:h-9 sm:w-auto sm:justify-start sm:text-[11px]"
       >
         <DownloadIcon className="size-3.5 opacity-70" />
         {pending ? "Preparing…" : "Export as PDF"}
@@ -77,7 +77,7 @@ export default function ExportPdfButton({
           id={menuId}
           role="menu"
           aria-label="Choose plan duration"
-          className="absolute right-0 z-30 mt-1.5 w-[min(100vw-2rem,17.5rem)] overflow-hidden border border-foreground/12 bg-surface shadow-[0_12px_40px_-18px_rgba(0,0,0,0.35)]"
+          className="absolute left-0 right-0 z-40 mt-1.5 w-full overflow-hidden border border-foreground/12 bg-surface shadow-[0_12px_40px_-18px_rgba(0,0,0,0.35)] sm:left-auto sm:right-0 sm:w-[17.5rem]"
         >
           <p className="border-b border-foreground/8 px-3.5 py-2.5 font-mono text-[9px] uppercase tracking-[0.14em] text-foreground/40">
             Trainer teaching guide

@@ -142,7 +142,7 @@ export default function TrackRoadmap({
   });
 
   return (
-    <article className="mx-auto w-full max-w-4xl overflow-x-clip px-3 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-12 md:px-8 md:pt-32">
+    <article className="mx-auto w-full max-w-4xl px-3 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-12 md:px-8 md:pt-32">
       <nav className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/45 sm:text-[11px] sm:tracking-[0.16em]">
         <Link
           href="/all"
@@ -156,15 +156,16 @@ export default function TrackRoadmap({
         <span className="text-foreground/70">{roadmap.short}</span>
       </nav>
 
-      <header className="mt-4 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+      <header className="relative z-20 mt-4 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <h1 className="text-balance text-[1.55rem] font-normal leading-[1.15] tracking-tight sm:text-[2.5rem] sm:leading-[1.05] md:text-[2.75rem]">
           {roadmap.title}
         </h1>
-        <div className="shrink-0 self-start sm:self-end">
+        <div className="w-full shrink-0 sm:w-auto sm:self-end">
           <ExportPdfButton roadmap={roadmap} content={content} />
         </div>
       </header>
 
+      <div className="overflow-x-clip">
       <section
         className="mt-6 border border-foreground/10 bg-surface sm:mt-8"
         aria-labelledby="progress-heading"
@@ -306,6 +307,7 @@ export default function TrackRoadmap({
             />
           ))}
         </ul>
+      </div>
       </div>
     </article>
   );
